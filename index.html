@@ -1,194 +1,143 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Epiroc digital support portal powered by Genesys Cloud Web Messenger."
-    />
-    <meta name="theme-color" content="#142b3a" />
-    <title>Epiroc Digital Support</title>
-    <link rel="icon" type="image/png" href="assets/epiroc-mark.png" />
-    <link rel="stylesheet" href="styles.css" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Epiroc digital support portal powered by Genesys Cloud Web Messenger.">
+  <meta name="theme-color" content="#142b3a">
+  <title>Epiroc Digital Support</title>
+  <link rel="icon" type="image/png" href="assets/epiroc-mark.png">
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- Genesys Cloud Web Messenger -->
-    <script type="text/javascript" charset="utf-8">
-      (function (g, e, n, es, ys) {
-        g["_genesysJs"] = e;
-        g[e] =
-          g[e] ||
-          function () {
-            (g[e].q = g[e].q || []).push(arguments);
-          };
-        g[e].t = 1 * new Date();
-        g[e].c = es;
-        ys = document.createElement("script");
-        ys.async = 1;
-        ys.src = n;
-        ys.charset = "utf-8";
-        document.head.appendChild(ys);
-      })(
-        window,
-        "Genesys",
-        "https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js",
-        {
-          environment: "prod-euc1",
-          deploymentId: "5c1259bf-f83f-48c9-bcd2-876dff539b76",
-        },
-      );
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+  <!-- Genesys Cloud Web Messenger -->
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments);
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script');
+      ys.async = 1;
+      ys.src = n;
+      ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(
+      window,
+      'Genesys',
+      'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js',
+      {
+        environment: 'prod-euc1',
+        deploymentId: '5c1259bf-f83f-48c9-bcd2-876dff539b76'
+      }
+    );
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#" aria-label="Epiroc digital support home">
-          <img
-            src="assets/epiroc-logo.png"
-            alt="Epiroc"
-            width="240"
-            height="68"
-          />
-        </a>
-        <div class="status" aria-label="Digital support status">
-          <span class="status-dot" aria-hidden="true"></span>
-          Digital support
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Epiroc digital support home">
+        <img src="assets/epiroc-logo.png" alt="Epiroc" width="240" height="68">
+      </a>
+      <div class="status" aria-label="Digital support status">
+        <span class="status-dot" aria-hidden="true"></span>
+        Digital support
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-glow glow-one" aria-hidden="true"></div>
+      <div class="hero-glow glow-two" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">EPIROC ASSISTANT</p>
+          <h1>Answers and support, right when you need them.</h1>
+          <p class="lead">
+            Connect with the Epiroc virtual assistant for quick guidance, useful resources,
+            and a smoother path to the right support.
+          </p>
+          <div class="hero-actions">
+            <button class="button button-primary" id="start-chat" type="button">
+              <span>Start a conversation</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <a class="button button-secondary" href="#how-it-works">How it works</a>
+          </div>
+          <p class="support-note" id="chat-status" role="status" aria-live="polite">
+            Look for the chat icon in the lower-right corner.
+          </p>
+        </div>
+
+        <div class="assistant-card" aria-label="Epiroc virtual assistant preview">
+          <div class="card-topbar">
+            <div class="avatar">
+              <img src="assets/epiroc-mark.png" alt="" width="56" height="56">
+            </div>
+            <div>
+              <strong>Epiroc Assistant</strong>
+              <span><i aria-hidden="true"></i> Available</span>
+            </div>
+            <span class="spark" aria-hidden="true">✦</span>
+          </div>
+          <div class="conversation" aria-hidden="true">
+            <div class="message assistant-message">
+              Hello! How can I help you today?
+            </div>
+            <div class="quick-options">
+              <span>Product support</span>
+              <span>Service information</span>
+              <span>Find the right contact</span>
+            </div>
+          </div>
+          <div class="card-footer" aria-hidden="true">
+            <span>Type your message...</span>
+            <span class="send-icon">➤</span>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main id="main-content">
-      <section class="hero">
-        <div class="hero-glow glow-one" aria-hidden="true"></div>
-        <div class="hero-glow glow-two" aria-hidden="true"></div>
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">EPIROC ASSISTANT</p>
-            <h1>Answers and support, right when you need them.</h1>
-            <p class="lead">
-              Connect with the Epiroc virtual assistant for quick guidance,
-              useful resources, and a smoother path to the right support.
-            </p>
-            <div class="hero-actions">
-              <button
-                class="button button-primary"
-                id="start-chat"
-                type="button"
-              >
-                <span>Start a conversation</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h14M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              <a class="button button-secondary" href="#how-it-works"
-                >How it works</a
-              >
-            </div>
-            <p
-              class="support-note"
-              id="chat-status"
-              role="status"
-              aria-live="polite"
-            >
-              Look for the chat icon in the lower-right corner.
-            </p>
-          </div>
-
-          <div
-            class="assistant-card"
-            aria-label="Epiroc virtual assistant preview"
-          >
-            <div class="card-topbar">
-              <div class="avatar">
-                <img
-                  src="assets/epiroc-mark.png"
-                  alt=""
-                  width="56"
-                  height="56"
-                />
-              </div>
-              <div>
-                <strong>Epiroc Assistant</strong>
-                <span><i aria-hidden="true"></i> Available</span>
-              </div>
-              <span class="spark" aria-hidden="true">✦</span>
-            </div>
-            <div class="conversation" aria-hidden="true">
-              <div class="message assistant-message">
-                Hello! How can I help you today?
-              </div>
-              <div class="quick-options">
-                <span>Product support</span>
-                <span>Service information</span>
-                <span>Find the right contact</span>
-              </div>
-            </div>
-            <div class="card-footer" aria-hidden="true">
-              <span>Type your message...</span>
-              <span class="send-icon">➤</span>
-            </div>
-          </div>
+    <section class="features" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">A FASTER WAY TO GET HELP</p>
+          <h2>Support designed around your question</h2>
         </div>
-      </section>
-
-      <section class="features" id="how-it-works">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">A FASTER WAY TO GET HELP</p>
-            <h2>Support designed around your question</h2>
-          </div>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span class="feature-number">01</span>
-              <h3>Start the chat</h3>
-              <p>
-                Open the messenger and tell the assistant what you need help
-                with.
-              </p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-number">02</span>
-              <h3>Get guided</h3>
-              <p>
-                Follow concise prompts to find relevant information and next
-                steps.
-              </p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-number">03</span>
-              <h3>Continue with support</h3>
-              <p>
-                When configured, the assistant can help route the conversation
-                appropriately.
-              </p>
-            </article>
-          </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-number">01</span>
+            <h3>Start the chat</h3>
+            <p>Open the messenger and tell the assistant what you need help with.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>Get guided</h3>
+            <p>Follow concise prompts to find relevant information and next steps.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>Continue with support</h3>
+            <p>When configured, the assistant can help route the conversation appropriately.</p>
+          </article>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <img
-          src="assets/epiroc-logo.png"
-          alt="Epiroc"
-          width="150"
-          height="42"
-        />
-        <p>Digital support experience powered by Genesys Cloud.</p>
-        <p>&copy; <span id="year"></span> Epiroc. All rights reserved.</p>
       </div>
-    </footer>
+    </section>
+  </main>
 
-    <script src="app.js"></script>
-  </body>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <img src="assets/epiroc-logo.png" alt="Epiroc" width="150" height="42">
+      <p>Digital support experience powered by Genesys Cloud.</p>
+      <p>&copy; <span id="year"></span> Epiroc. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
 </html>
