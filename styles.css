@@ -119,36 +119,9 @@ h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.08; letter-s
 }
 
 
-/* Custom Genesys launcher: remains available even when the native launcher is disabled. */
-.floating-chat {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 9999;
-  min-height: 58px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 20px 0 17px;
-  border: 0;
-  border-radius: 999px;
-  color: var(--ink);
-  background: var(--yellow);
-  box-shadow: 0 16px 42px rgba(7, 24, 35, .32);
-  font: inherit;
-  font-weight: 850;
-  cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-}
-.floating-chat svg { width: 27px; height: 27px; }
-.floating-chat:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 20px 48px rgba(7,24,35,.38); }
-.floating-chat:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; }
-.floating-chat:disabled { opacity: .65; cursor: wait; }
-@media (max-width: 600px) {
-  .floating-chat { right: 16px; bottom: 16px; width: 58px; padding: 0; justify-content: center; }
-  .floating-chat-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-}
 
-/* Final launcher override: always clickable, never a wait cursor. */
-.floating-chat, .floating-chat:disabled, .floating-chat[disabled] { opacity: 1; cursor: pointer !important; pointer-events: auto; }
-.chat-error { color: #ffd36a !important; font-weight: 700; }
+/* Main CTA feedback while Genesys processes the open command. */
+#start-chat:disabled {
+  opacity: .78;
+  cursor: pointer;
+}
