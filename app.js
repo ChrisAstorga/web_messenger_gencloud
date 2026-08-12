@@ -1,86 +1,62 @@
 const heroChatButton = document.getElementById("start-chat");
-const floatingChatButton = document.getElementById("floating-chat");
 const chatStatus = document.getElementById("chat-status");
 const year = document.getElementById("year");
-let messengerReady = false;
-let messengerOpen = false;
-let openRequested = false;
+
 year.textContent = new Date().getFullYear();
-floatingChatButton.disabled = false;
-floatingChatButton.removeAttribute("disabled");
+
 function report(message, isError = false) {
   chatStatus.textContent = message;
   chatStatus.classList.toggle("chat-error", isError);
 }
+
 function openMessenger() {
   if (typeof window.Genesys !== "function") {
     report(
-      "Genesys did not load. Check the deployment URL, browser console, and network access.",
+      "Genesys Messenger has not loaded. Please refresh the page and try again.",
       true,
     );
     return;
   }
-  if (!messengerReady) {
-    openRequested = true;
-    report("Connecting to the Epiroc Assistant...");
-    return;
-  }
+
+  heroChatButton.disabled = true;
+  heroChatButton.setAttribute("aria-busy", "true");
+  report("Opening the Epiroc Assistant...");
+
   window.Genesys(
     "command",
     "Messenger.open",
     {},
     () => {
-      messengerOpen = true;
-      openRequested = false;
-      floatingChatButton.setAttribute("aria-label", "Close Epiroc Assistant");
+      heroChatButton.disabled = false;
+      heroChatButton.removeAttribute("aria-busy");
       report("The Epiroc Assistant is open.");
     },
     (error) => {
-      openRequested = false;
+      heroChatButton.disabled = false;
+      heroChatButton.removeAttribute("aria-busy");
+
+      // Messenger.open is also rejected when Messenger is already open.
+      const detail = error && (error.message || error.data || String(error));
+      if (detail && /already.*open|opened/i.test(detail)) {
+        report("The Epiroc Assistant is already open.");
+        return;
+      }
+
       console.error("Genesys Messenger.open failed:", error);
-      const detail = error && (error.message || error.data || error.toString());
       report(
-        "Messenger could not open" +
-          (detail
-            ? ": " + detail
-            : ". Check Allowed Domains, deployment status, Conversation app, and headless mode."),
+        "The assistant could not open. Please use the Genesys chat icon in the lower-right corner or refresh the page.",
         true,
       );
     },
   );
 }
-function closeMessenger() {
-  if (typeof window.Genesys !== "function") return;
-  window.Genesys("command", "Messenger.close", {}, () => {
-    messengerOpen = false;
-    floatingChatButton.setAttribute("aria-label", "Open Epiroc Assistant");
-    report("The Epiroc Assistant is ready.");
-  });
-}
-function toggleMessenger() {
-  messengerOpen ? closeMessenger() : openMessenger();
-}
-heroChatButton.addEventListener("click", toggleMessenger);
-floatingChatButton.addEventListener("click", toggleMessenger);
+
+heroChatButton.addEventListener("click", openMessenger);
+
 if (typeof window.Genesys === "function") {
   window.Genesys("subscribe", "Messenger.ready", () => {
-    messengerReady = true;
-    report("The Epiroc Assistant is ready. Select a chat button to begin.");
-    if (openRequested) openMessenger();
-  });
-  window.Genesys("subscribe", "Messenger.opened", () => {
-    messengerOpen = true;
-    floatingChatButton.setAttribute("aria-label", "Close Epiroc Assistant");
-  });
-  window.Genesys("subscribe", "Messenger.closed", () => {
-    messengerOpen = false;
-    floatingChatButton.setAttribute("aria-label", "Open Epiroc Assistant");
+    report(
+      "The Epiroc Assistant is ready. Select Start a conversation or use the chat icon in the lower-right corner.",
+    );
   });
 }
-window.setTimeout(() => {
-  if (!messengerReady)
-    report(
-      "Genesys Messenger has not initialized. Add this website origin to Allowed Domains. For local testing, use http://localhost instead of opening index.html directly.",
-      true,
-    );
-}, 10000);
